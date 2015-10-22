@@ -3,13 +3,13 @@
 // @namespace   Ogame Plunder Saqueo Ataque Robo Recursos
 // @description Añade la cantidad de naves de carga necesarias para saquear el planeta en el reporte de espionaje.
 // @include     http://*/game/index.php?page=messages
-// @version     1
+// @version     2
 // @grant       none
 // ==/UserScript==
 $(window).load(function() {
 		$('#ui-id-14 .msg').each(function() {
 		//obtener recursos desde el dom
-		var resourcess= $(this).find('.msg_content').find('span:eq(10)').text();
+		var resourcess= $(this).find('.msg_content .compacting:eq(1)').find('span:eq(4)').text();
 		resourcess = resourcess.substring(10);
 		//quitar los puntos
 		resourcess = resourcess.replace('.', '');
@@ -24,9 +24,9 @@ $(window).load(function() {
 			var amount= parseInt(resourcess);
 		}
 		//obtener porcentaje desde el dom
-		var robo= $(this).find('.msg_content').find('span:eq(11)').text();
+		var robo= $(this).find('.msg_content .compacting:eq(2)').find('span:eq(0)').text();
 		robo = robo.substring(7);
-		robo = robo.substring(0, str.length - 1);
+		robo = robo.substring(0, robo.length - 1);
 		var percent = parseInt(robo);
 		//calcular la cantidad de naves pequeñas y grandes que serán necesarias
 		amount = (amount * percent)/100;
